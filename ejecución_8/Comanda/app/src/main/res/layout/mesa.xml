@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:orientation="vertical">
+            <TextView
+                style="@style/TtlTxt"
+                android:text="Añadir Mesa"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                style="@style/NorTxt"
+                android:layout_marginTop="25dp"
+                android:text="Numero Mesa:"/>
+
+            <EditText
+                android:id="@+id/MeTxtNum"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:ems="3"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/NorTxt"
+                android:layout_marginTop="25dp"
+                android:text="Capacidad:"/>
+
+            <EditText
+                android:id="@+id/MeTxtCap"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:ems="2"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/BtnMeGuardar"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                android:text="Guardar"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
