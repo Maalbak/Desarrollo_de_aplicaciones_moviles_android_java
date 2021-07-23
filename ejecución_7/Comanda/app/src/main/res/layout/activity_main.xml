@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TtlTxt"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Bienvenido" />
+
+            <Button
+                android:id="@+id/BtnMesa"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                android:text="Añadir Mesa"
+                android:layout_gravity="center"
+                />
+
+            <Button
+                android:id="@+id/BtnGarzon"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                android:text="Añadir Garzón"
+                android:layout_gravity="center"
+                />
+
+            <Button
+                android:id="@+id/BtnPlato"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                android:text="Añadir Plato"
+                android:layout_gravity="center"
+                />
+
+            <Button
+                android:id="@+id/BtnBebida"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                android:text="Añadir Bebida"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

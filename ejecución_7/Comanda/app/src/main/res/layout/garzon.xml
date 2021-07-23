@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:orientation="vertical">
+            <TextView
+                style="@style/TtlTxt"
+                android:text="Añadir Garzón"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                style="@style/NorTxt"
+                android:layout_marginTop="25dp"
+                android:text="Id:"/>
+
+            <EditText
+                android:id="@+id/GarTxtId"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:ems="7"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/NorTxt"
+                android:layout_marginTop="25dp"
+                android:text="Nombre"/>
+
+            <EditText
+                android:id="@+id/NomTxtTipo"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:ems="25"
+                android:inputType="text" />
+
+            <TextView
+                style="@style/NorTxt"
+                android:layout_marginTop="25dp"
+                android:text="Apellido:"/>
+
+            <EditText
+                android:id="@+id/ApTxtNom"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:ems="25"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/BtnGarGuardar"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                android:text="Guardar"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
