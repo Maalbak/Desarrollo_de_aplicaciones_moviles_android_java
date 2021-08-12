@@ -1,0 +1,66 @@
+package com.project.matias.comanda.Adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.project.matias.comanda.R;
+
+import Datos.PlatoDatos;
+
+public class AdapterPlato extends FirestoreRecyclerAdapter<PlatoDatos, AdapterPlato.ViewHolder> {
+
+
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public AdapterPlato(@NonNull FirestoreRecyclerOptions<PlatoDatos> options) {
+        super(options);
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_plato, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull PlatoDatos platoDatos) {
+
+        holder.TxtPlaId.setText(platoDatos.getId_pla());
+        holder.TxtPlaTipo.setText(platoDatos.getTipo_pla());
+        holder.TxtPlaNom.setText(platoDatos.getNom_pla());
+        holder.TxtPlaPre.setText(platoDatos.getPre_pla());
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+
+        TextView TxtPlaId;
+        TextView TxtPlaTipo;
+        TextView TxtPlaNom;
+        TextView TxtPlaPre;
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            TxtPlaId = itemView.findViewById(R.id.PlaTxvId);
+            TxtPlaTipo = itemView.findViewById(R.id.PlaTxvTipo);
+            TxtPlaNom = itemView.findViewById(R.id.PlaTxvNom);
+            TxtPlaPre = itemView.findViewById(R.id.PlaTxvPre);
+
+        }
+    }
+}

@@ -1,0 +1,53 @@
+package com.project.matias.comanda.Lista;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.project.matias.comanda.Adapter.AdapterPlato;
+import com.project.matias.comanda.R;
+
+import Datos.PlatoDatos;
+
+public class MostrarPlato extends AppCompatActivity {
+
+    RecyclerView RecyclerPla;
+    AdapterPlato pAdapter;
+    FirebaseFirestore pFirestore;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mostrar_plato);
+
+        RecyclerPla = findViewById(R.id.recyclerplato);
+        RecyclerPla.setLayoutManager(new LinearLayoutManager(this));
+        pFirestore = FirebaseFirestore.getInstance();
+
+        Query pQuery = pFirestore.collection("Plato");
+
+        FirestoreRecyclerOptions<PlatoDatos> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<PlatoDatos>().setQuery(pQuery, PlatoDatos.class).build();
+
+        pAdapter = new AdapterPlato(firestoreRecyclerOptions);
+        pAdapter.notifyDataSetChanged();
+        RecyclerPla.setAdapter(pAdapter);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        pAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        pAdapter.stopListening();
+    }
+
+}

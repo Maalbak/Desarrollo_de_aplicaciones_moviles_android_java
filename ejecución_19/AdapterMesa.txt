@@ -1,0 +1,63 @@
+package com.project.matias.comanda.Adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.project.matias.comanda.R;
+
+import Datos.MesaDatos;
+
+
+public class AdapterMesa extends FirestoreRecyclerAdapter<MesaDatos, AdapterMesa.ViewHolder> {
+
+
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public AdapterMesa(@NonNull FirestoreRecyclerOptions<MesaDatos> options) {
+        super(options);
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_mesa, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull MesaDatos mesaDatos) {
+
+        holder.TxtMesaNum.setText(mesaDatos.getNum_mesa());
+        holder.TxtMesaCap.setText(mesaDatos.getCap_mesa());
+
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+
+        TextView TxtMesaNum;
+        TextView TxtMesaCap;
+
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            TxtMesaNum = itemView.findViewById(R.id.MeTxvNum);
+            TxtMesaCap = itemView.findViewById(R.id.MeTxtCap);
+
+        }
+    }
+}

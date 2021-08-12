@@ -1,0 +1,3 @@
+Reflexión
+
+Completados los Adapter y La clase que muestra los datos de Garzon, Mesa y Plato.

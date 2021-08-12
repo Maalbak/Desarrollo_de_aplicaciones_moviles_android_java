@@ -1,0 +1,63 @@
+package com.project.matias.comanda.Adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.project.matias.comanda.R;
+
+import Datos.GarzonDatos;
+
+public class AdapterGarzon extends FirestoreRecyclerAdapter<GarzonDatos, AdapterGarzon.ViewHolder> {
+
+
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public AdapterGarzon(@NonNull FirestoreRecyclerOptions<GarzonDatos> options) {
+        super(options);
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_garzon, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull GarzonDatos garzonDatos) {
+
+        holder.TxtGarId.setText(garzonDatos.getId_gar());
+        holder.TxtGarNom.setText(garzonDatos.getNom_gar());
+        holder.TxtGarAp.setText(garzonDatos.getAp_gar());
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+
+        TextView TxtGarId;
+        TextView TxtGarNom;
+        TextView TxtGarAp;
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            TxtGarId = itemView.findViewById(R.id.GarTxvId);
+            TxtGarNom = itemView.findViewById(R.id.GarTxvNom);
+            TxtGarAp = itemView.findViewById(R.id.GarTxvAp);
+
+        }
+    }
+}
