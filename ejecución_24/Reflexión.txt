@@ -1,0 +1,3 @@
+Reflexión
+
+Se muestra que los datos ingresados en la app se guardan correctamente.
