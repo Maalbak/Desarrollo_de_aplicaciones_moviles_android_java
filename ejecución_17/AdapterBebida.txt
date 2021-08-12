@@ -1,0 +1,66 @@
+package com.project.matias.comanda.Adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.project.matias.comanda.R;
+
+import Datos.BebidaDatos;
+
+public class AdapterBebida extends FirestoreRecyclerAdapter<BebidaDatos, AdapterBebida.ViewHolder> {
+
+
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public AdapterBebida(@NonNull FirestoreRecyclerOptions<BebidaDatos> options) {
+        super(options);
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_bebida, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull BebidaDatos bebidaDatos) {
+
+        holder.TxtBeId.setText(bebidaDatos.getId_be());
+        holder.TxtBeTipo.setText(bebidaDatos.getTipo_be());
+        holder.TxtBeNom.setText(bebidaDatos.getNom_be());
+        holder.TxtBePre.setText(bebidaDatos.getPre_be());
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+
+        TextView TxtBeId;
+        TextView TxtBeTipo;
+        TextView TxtBeNom;
+        TextView TxtBePre;
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            TxtBeId = itemView.findViewById(R.id.BeTxvId);
+            TxtBeTipo = itemView.findViewById(R.id.BeTxvTipo);
+            TxtBeNom = itemView.findViewById(R.id.BeTxvNom);
+            TxtBePre = itemView.findViewById(R.id.BeTxvPre);
+
+        }
+    }
+}

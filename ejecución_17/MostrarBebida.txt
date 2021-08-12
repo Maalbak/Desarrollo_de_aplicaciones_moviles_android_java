@@ -1,0 +1,53 @@
+package com.project.matias.comanda.Lista;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.project.matias.comanda.Adapter.AdapterBebida;
+import com.project.matias.comanda.R;
+
+import Datos.BebidaDatos;
+
+public class MostrarBebida extends AppCompatActivity {
+
+    RecyclerView RecyclerBeb;
+    AdapterBebida bAdapter;
+    FirebaseFirestore bFirestore;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mostrar_bebida);
+
+        RecyclerBeb = findViewById(R.id.recyclerbebida);
+        RecyclerBeb.setLayoutManager(new LinearLayoutManager(this));
+        bFirestore = FirebaseFirestore.getInstance();
+
+        Query bQuery = bFirestore.collection("Bebida");
+
+        FirestoreRecyclerOptions<BebidaDatos> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<BebidaDatos>().setQuery(bQuery, BebidaDatos.class).build();
+
+        bAdapter = new AdapterBebida(firestoreRecyclerOptions);
+        bAdapter.notifyDataSetChanged();
+        RecyclerBeb.setAdapter(bAdapter);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        bAdapter.stopListening();
+    }
+
+}
