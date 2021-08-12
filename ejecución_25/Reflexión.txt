@@ -1,0 +1,4 @@
+Reflexión
+
+Las recyclerview se actualizan para que estas tengan un mejor diseño y para que muestren
+la información. Antes no lo hacían.
