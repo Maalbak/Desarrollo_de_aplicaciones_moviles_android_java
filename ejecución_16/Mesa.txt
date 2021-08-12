@@ -1,0 +1,74 @@
+package com.project.matias.comanda;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Mesa extends AppCompatActivity {
+
+    EditText MesaNum;
+    EditText MesaCap;
+    Button MesaGuardar;
+
+    FirebaseFirestore mFirestore;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mesa);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            MesaNum = findViewById(R.id.MeTxtNum);
+            MesaCap = findViewById(R.id.MeTxtCap);
+            MesaGuardar = findViewById(R.id.BtnMeGuardar);
+
+            mFirestore = FirebaseFirestore.getInstance();
+
+            MesaGuardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    añadirMesa();
+                }
+            });
+
+        }
+    }
+    private void añadirMesa() {
+
+        String NumMesa = MesaNum.getText().toString();
+        String CapMesa = MesaCap.getText().toString();
+
+        Map<String, Object> mapb = new HashMap<>();
+        mapb.put("Número Mesa", NumMesa);
+        mapb.put("Capacidad Mesa", MesaCap);
+
+        mFirestore.collection("Bebida").add(mapb).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(Mesa.this, "Los datos fueron añadidos correctamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Mesa.this, "No se añadieron los datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}

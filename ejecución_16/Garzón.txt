@@ -1,0 +1,77 @@
+package com.project.matias.comanda;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Garzon extends AppCompatActivity {
+
+    EditText GarId;
+    EditText GarNom;
+    EditText GarAp;
+    Button GarGuardar;
+
+    FirebaseFirestore mFirestore;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.garzon);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            GarId = findViewById(R.id.GarTxtId);
+            GarNom = findViewById(R.id.GarTxtNom);
+            GarAp = findViewById(R.id.GarTxtAp);
+            GarGuardar = findViewById(R.id.BtnGarGuardar);
+
+            GarGuardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    añadirGarzon();
+                }
+            });
+
+        }
+    }
+
+    private void añadirGarzon() {
+
+        String IdGar = GarId.getText().toString();
+        String NomGar = GarNom.getText().toString();
+        String ApGar = GarAp.getText().toString();
+
+        Map<String, Object> mapg = new HashMap<>();
+        mapg.put("Id Garzón", IdGar);
+        mapg.put("Nombre Garzón", NomGar);
+        mapg.put("Apellido Garzón", ApGar);
+
+        mFirestore.collection("Bebida").add(mapg).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(Garzon.this, "Los datos fueron añadidos correctamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Garzon.this, "No se añadieron los datos", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
